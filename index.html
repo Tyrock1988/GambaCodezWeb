@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telegram Bot Code Submission</title>
+</head>
+<body>
+  <h1>Submit Your Code</h1>
+
+  <form id="codeForm">
+    <input type="text" id="codeInput" placeholder="Enter code here" required />
+    <button type="submit">Submit</button>
+  </form>
+
+  <div id="response"></div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    // This script will handle the form submission
+    $('#codeForm').on('submit', function(e) {
+      e.preventDefault(); // Prevents the default form submission
+
+      const code = $('#codeInput').val(); // Get the value from the input field
+
+      // Send the code to your API or server
+      $.ajax({
+        url: '/submitCode', // Adjust this URL to match your endpoint
+        method: 'POST',
+        data: {
+          code: code
+        },
+        success: function(response) {
+          $('#response').text('Code submitted successfully!');
+        },
+        error: function() {
+          $('#response').text('There was an error submitting the code.');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
